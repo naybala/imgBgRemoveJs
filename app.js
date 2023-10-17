@@ -39,4 +39,5 @@ toDataURL("./imgs/test_img.jpg").then((dataUrl) => {
   }
 
   ctx.putImageData(imgd, 0, 0);
+  // console.log(ctx.getImageData(0, 0, 1000, 1000));
 });
