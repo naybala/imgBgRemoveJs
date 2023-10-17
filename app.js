@@ -11,7 +11,7 @@ const toDataURL = (url) =>
           reader.readAsDataURL(blob);
         })
     );
-toDataURL("./imgs/focus_beauty_GYvYLv_1697450245.41.jpg").then((dataUrl) => {
+toDataURL("./imgs/test_img.jpg").then((dataUrl) => {
   image.setAttribute("src", dataUrl);
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
@@ -19,16 +19,17 @@ toDataURL("./imgs/focus_beauty_GYvYLv_1697450245.41.jpg").then((dataUrl) => {
   ctx.drawImage(image, 0, 0);
 
   var imgd = ctx.getImageData(0, 0, 1000, 1000);
-  console.log(imgd);
   var pix = imgd.data;
   var newColor = { r: 0, g: 0, b: 0, a: 0 };
 
   for (var i = 0, n = pix.length; i < n; i += 4) {
     var r = pix[i],
       g = pix[i + 1],
-      b = pix[i + 2];
+      b = pix[i + 2],
+      a = pix[i + 3];
+    // console.log(a);
 
-    if (r == 255 && g == 255 && b == 255) {
+    if (r > 180 && g > 180 && b > 180 && a > 180) {
       // Change the white to the new color.
       pix[i] = newColor.r;
       pix[i + 1] = newColor.g;
